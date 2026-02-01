@@ -2,6 +2,8 @@
 
 Plugin para FacturaScripts 2025.x que permite personalizar los nombres de los archivos PDF generados para cada tipo de documento comercial.
 
+![Configuracion de PdfFileNamer](.github/screnshot.png)
+
 ## Funcionalidades
 
 - Configura patrones personalizados para los nombres de archivos PDF
