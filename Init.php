@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace FacturaScripts\Plugins\PdfFileNamer;
 
 use FacturaScripts\Core\Template\InitClass;
+use FacturaScripts\Core\Tools;
 
 /**
  * Plugin initialization class.
@@ -30,6 +31,24 @@ class Init extends InitClass
 
     public function update(): void
     {
+        // Initialize settings with empty values to create the settings group
+        $settings = [
+            'pattern_FacturaCliente',
+            'pattern_FacturaProveedor',
+            'pattern_PresupuestoCliente',
+            'pattern_PedidoCliente',
+            'pattern_PedidoProveedor',
+            'pattern_AlbaranCliente',
+            'pattern_AlbaranProveedor',
+        ];
+
+        foreach ($settings as $key) {
+            // This creates the setting if it doesn't exist (in memory)
+            Tools::settings('pdffilenamer', $key, '');
+        }
+
+        // Save settings to database to create the settings group
+        Tools::settingsSave();
     }
 
     public function uninstall(): void
