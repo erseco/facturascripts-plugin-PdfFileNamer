@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+    <columns>
+        <group name="customer-documents" title="customer-documents" icon="fas fa-file-invoice" numcolumns="12">
+            <column name="pattern_FacturaCliente" numcolumns="6" order="100" description="pattern-example-customer">
+                <widget type="text" fieldname="pattern_FacturaCliente" maxlength="200" placeholder="{company}_{code}_{customer}"/>
+            </column>
+            <column name="pattern_PresupuestoCliente" numcolumns="6" order="200" description="pattern-example-customer">
+                <widget type="text" fieldname="pattern_PresupuestoCliente" maxlength="200" placeholder="{company}_{code}_{customer}"/>
+            </column>
+            <column name="pattern_PedidoCliente" numcolumns="6" order="300" description="pattern-example-customer">
+                <widget type="text" fieldname="pattern_PedidoCliente" maxlength="200" placeholder="{company}_{code}_{customer}"/>
+            </column>
+            <column name="pattern_AlbaranCliente" numcolumns="6" order="400" description="pattern-example-customer">
+                <widget type="text" fieldname="pattern_AlbaranCliente" maxlength="200" placeholder="{company}_{code}_{customer}"/>
+            </column>
+        </group>
+        <group name="supplier-documents" title="supplier-documents" icon="fas fa-file-invoice-dollar" numcolumns="12">
+            <column name="pattern_FacturaProveedor" numcolumns="6" order="100" description="pattern-example-supplier">
+                <widget type="text" fieldname="pattern_FacturaProveedor" maxlength="200" placeholder="{company}_{code}_{supplier}"/>
+            </column>
+            <column name="pattern_PedidoProveedor" numcolumns="6" order="200" description="pattern-example-supplier">
+                <widget type="text" fieldname="pattern_PedidoProveedor" maxlength="200" placeholder="{company}_{code}_{supplier}"/>
+            </column>
+            <column name="pattern_AlbaranProveedor" numcolumns="6" order="300" description="pattern-example-supplier">
+                <widget type="text" fieldname="pattern_AlbaranProveedor" maxlength="200" placeholder="{company}_{code}_{supplier}"/>
+            </column>
+        </group>
+    </columns>
+</view>

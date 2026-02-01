@@ -1,0 +1,59 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Find the input field for pattern_FacturaCliente to locate our settings form
+    const patternInput = document.querySelector('input[name="pattern_FacturaCliente"]');
+    if (!patternInput) return;
+
+    // Find the parent card-body
+    const cardBody = patternInput.closest('.card-body');
+    if (!cardBody) return;
+
+    // Check if alert already exists
+    if (cardBody.querySelector('.pdffilenamer-help')) return;
+
+    // Create the alert HTML
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'alert alert-warning mb-3 pdffilenamer-help';
+    alertDiv.setAttribute('role', 'alert');
+    alertDiv.innerHTML = `
+        <h6 class="alert-heading"><i class="fas fa-info-circle me-2"></i>{{ i18n.trans('pdf-filename-help-title') }}</h6>
+        <hr class="my-2">
+        <p class="mb-2"><strong>{{ i18n.trans('available-tokens') }}:</strong></p>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="mb-0 small">
+                    <li><code>{code}</code> - {{ i18n.trans('token-code') }}</li>
+                    <li><code>{number}</code> - {{ i18n.trans('token-number') }}</li>
+                    <li><code>{serie}</code> - {{ i18n.trans('token-serie') }}</li>
+                    <li><code>{date}</code> - {{ i18n.trans('token-date') }}</li>
+                    <li><code>{year}</code> - {{ i18n.trans('token-year') }}</li>
+                    <li><code>{month}</code> - {{ i18n.trans('token-month') }}</li>
+                    <li><code>{day}</code> - {{ i18n.trans('token-day') }}</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="mb-0 small">
+                    <li><code>{company}</code> - {{ i18n.trans('token-company') }}</li>
+                    <li><code>{company_name}</code> - {{ i18n.trans('token-company-name') }}</li>
+                    <li><code>{company_cif}</code> - {{ i18n.trans('token-company-cif') }}</li>
+                    <li><code>{customer}</code> - {{ i18n.trans('token-customer') }}</li>
+                    <li><code>{customer_cif}</code> - {{ i18n.trans('token-customer-cif') }}</li>
+                    <li><code>{supplier}</code> - {{ i18n.trans('token-supplier') }}</li>
+                    <li><code>{supplier_cif}</code> - {{ i18n.trans('token-supplier-cif') }}</li>
+                    <li><code>{doctype}</code> - {{ i18n.trans('token-doctype') }}</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="my-2">
+        <p class="mb-0 small fst-italic">{{ i18n.trans('pdf-filename-help-empty') }}</p>
+    `;
+
+    // Insert at the beginning of card-body, after the first row (buttons row)
+    const firstRow = cardBody.querySelector('.row');
+    if (firstRow && firstRow.nextSibling) {
+        firstRow.parentNode.insertBefore(alertDiv, firstRow.nextSibling);
+    } else {
+        cardBody.insertBefore(alertDiv, cardBody.firstChild);
+    }
+});
+</script>
