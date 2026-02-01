@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * This file is part of PdfFileNamer plugin for FacturaScripts.
  * Copyright (C) 2026 Ernesto Serrano <info@ernesto.es>
@@ -11,6 +9,8 @@ declare(strict_types=1);
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  */
+
+declare(strict_types=1);
 
 namespace FacturaScripts\Plugins\PdfFileNamer\Lib\Export;
 
