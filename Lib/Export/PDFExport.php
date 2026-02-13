@@ -62,7 +62,7 @@ class PDFExport extends CorePDFExport
      *
      * @param Response $response
      */
-    public function show(Response &$response): void
+    public function show(Response &$response)
     {
         // If we have a custom filename, set it in the header
         if (!empty($this->customFileName)) {
