@@ -17,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
       - name: Create or update playground preview comment
         uses: actions/github-script@v7
         env:
@@ -24,7 +27,10 @@ jobs:
           PLAYGROUND_IMAGE_URL: https://raw.githubusercontent.com/erseco/facturascripts-playground/main/ogimage.png
         with:
           script: |
+            const fs = require('fs');
             const marker = '<!-- facturascripts-playground-preview -->';
+            const defaultPluginZipUrl =
+              'https://github.com/erseco/facturascripts-plugin-PdfFileNamer/archive/refs/heads/main.zip';
             const { owner, repo } = context.repo;
             const pullRequest = context.payload.pull_request;
             const encodedHeadRef = pullRequest.head.ref
@@ -32,15 +38,13 @@ jobs:
               .map((segment) => encodeURIComponent(segment))
               .join('/');
             const pluginZipUrl = `https://github.com/${owner}/${repo}/archive/refs/heads/${encodedHeadRef}.zip`;
+            const blueprintTemplate = fs.readFileSync('blueprint.json', 'utf8');
 
-            const blueprint = {
-              meta: {
-                title: 'PdfFileNamer PR Preview',
-                author: owner,
-                description: `Open pull request #${pullRequest.number} for ${repo} in FacturaScripts Playground`,
-              },
-              plugins: [pluginZipUrl],
-            };
+            if (!blueprintTemplate.includes(defaultPluginZipUrl)) {
+              throw new Error('Default plugin ZIP URL was not found in blueprint.json');
+            }
+
+            const blueprint = blueprintTemplate.replace(defaultPluginZipUrl, pluginZipUrl);
 
             const encodeBase64Url = (value) =>
               Buffer.from(value, 'utf8')
@@ -50,7 +54,7 @@ jobs:
                 .replace(/=+$/g, '');
 
             const previewUrl = `${process.env.PLAYGROUND_URL}?blueprint-data=${encodeBase64Url(
-              JSON.stringify(blueprint),
+              blueprint,
             )}`;
 
             const body = [

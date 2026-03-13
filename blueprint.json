@@ -1,8 +1,22 @@
 {
+  "$schema": "./assets/blueprints/blueprint-schema.json",
   "meta": {
-    "title": "PdfFileNamer",
+    "title": "PdfFileNamer Playground",
     "author": "erseco",
-    "description": "Run PdfFileNamer in FacturaScripts Playground"
+    "description": "Playground blueprint for testing PdfFileNamer in FacturaScripts."
+  },
+  "debug": {
+    "enabled": true
+  },
+  "landingPage": "/AdminPlugins",
+  "siteOptions": {
+    "title": "PdfFileNamer Demo",
+    "locale": "es_ES",
+    "timezone": "Europe/Madrid"
+  },
+  "login": {
+    "username": "admin",
+    "password": "admin"
   },
   "plugins": [
     "https://github.com/erseco/facturascripts-plugin-PdfFileNamer/archive/refs/heads/main.zip"
