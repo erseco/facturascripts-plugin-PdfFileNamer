@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "title": "PdfFileNamer",
+    "author": "erseco",
+    "description": "Run PdfFileNamer in FacturaScripts Playground"
+  },
+  "plugins": [
+    "https://github.com/erseco/facturascripts-plugin-PdfFileNamer/archive/refs/heads/main.zip"
+  ]
+}

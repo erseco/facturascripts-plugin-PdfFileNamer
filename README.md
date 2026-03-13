@@ -2,6 +2,11 @@
 
 Plugin para FacturaScripts 2025.x que permite personalizar los nombres de los archivos PDF generados para cada tipo de documento comercial.
 
+<a href="https://erseco.github.io/facturascripts-playground/?blueprint=https%3A%2F%2Fraw.githubusercontent.com%2Ferseco%2Ffacturascripts-plugin-PdfFileNamer%2Frefs%2Fheads%2Fmain%2Fblueprint.json">
+  <img src="https://raw.githubusercontent.com/erseco/facturascripts-playground/main/ogimage.png" alt="Try PdfFileNamer in your browser" width="220">
+</a><br>
+<small><a href="https://erseco.github.io/facturascripts-playground/?blueprint=https%3A%2F%2Fraw.githubusercontent.com%2Ferseco%2Ffacturascripts-plugin-PdfFileNamer%2Frefs%2Fheads%2Fmain%2Fblueprint.json">Try in your browser</a></small>
+
 ![Configuracion de PdfFileNamer](.github/screnshot.png)
 
 ## Funcionalidades
