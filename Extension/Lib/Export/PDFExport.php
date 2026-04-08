@@ -40,6 +40,8 @@ class PDFExport
     protected function qrSubtitleHeader(): Closure
     {
         return function ($model) {
+            // pdfFileNamerSetFilename is invoked as a dynamically bound extension method
+            // via FacturaScripts' ExtensionsTrait::__call(), not as a direct method call.
             $this->pdfFileNamerSetFilename($model);
             return null;
         };
@@ -53,6 +55,8 @@ class PDFExport
     protected function qrSubtitleAfterLines(): Closure
     {
         return function ($model) {
+            // pdfFileNamerSetFilename is invoked as a dynamically bound extension method
+            // via FacturaScripts' ExtensionsTrait::__call(), not as a direct method call.
             $this->pdfFileNamerSetFilename($model);
             return null;
         };
@@ -87,6 +91,9 @@ class PDFExport
             // Use reflection to set the private $fileName property in ExportBase.
             // This is necessary because setFileName() only sets the value when empty,
             // and by this point newDoc() has already set it.
+            // WARNING: This creates coupling to ExportBase's internal structure.
+            // If the core framework renames or restructures the $fileName property,
+            // this will need to be updated accordingly.
             $prop = new ReflectionProperty('FacturaScripts\Core\Lib\Export\ExportBase', 'fileName');
             $prop->setValue($this, $filename);
 

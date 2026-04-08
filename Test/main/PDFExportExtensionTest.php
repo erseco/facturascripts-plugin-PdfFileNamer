@@ -168,7 +168,7 @@ class PDFExportExtensionTest extends TestCase
         );
 
         foreach ($methods as $method) {
-            if (strpos($method->name, '__') === 0) {
+            if (str_starts_with($method->name, '__')) {
                 continue;
             }
 
