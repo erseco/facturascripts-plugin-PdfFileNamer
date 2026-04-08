@@ -147,8 +147,8 @@ class PDFExportExtensionTest extends TestCase
 
         $closure = $method->invoke($extension);
 
-        // Pass a non-BusinessDocument object
-        $result = $closure->call(new \stdClass(), new \stdClass());
+        // Pass a non-BusinessDocument object without rebinding the closure.
+        $result = $closure(new \stdClass());
 
         $this->assertNull(
             $result,
