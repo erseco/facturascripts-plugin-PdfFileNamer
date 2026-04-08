@@ -16,17 +16,18 @@ namespace FacturaScripts\Plugins\PdfFileNamer;
 
 use FacturaScripts\Core\Template\InitClass;
 use FacturaScripts\Core\Tools;
+use FacturaScripts\Plugins\PdfFileNamer\Extension\Lib\Export\PDFExport;
 
 /**
  * Plugin initialization class.
- * The PDFExport class in Lib/Export overrides the Core PDFExport
- * to customize PDF filenames based on configured patterns.
+ * Uses the extension system to hook into PDFExport via pipe hooks,
+ * ensuring compatibility with other PDF plugins like PlantillasPDF.
  */
 class Init extends InitClass
 {
     public function init(): void
     {
-        // PDFExport is loaded automatically via Dinamic class system
+        $this->loadExtension(new PDFExport());
     }
 
     public function update(): void
