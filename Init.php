@@ -16,23 +16,32 @@ namespace FacturaScripts\Plugins\PdfFileNamer;
 
 use FacturaScripts\Core\Template\InitClass;
 use FacturaScripts\Core\Tools;
+use FacturaScripts\Plugins\PdfFileNamer\Extension\Controller\EditController;
 use FacturaScripts\Plugins\PdfFileNamer\Extension\Lib\Export\PDFExport;
 
 /**
  * Plugin initialization class.
- * Uses the extension system to hook into PDFExport via pipe hooks,
- * ensuring compatibility with other PDF plugins like PlantillasPDF.
  */
 class Init extends InitClass
 {
     public function init(): void
     {
-        $this->loadExtension(new PDFExport());
+        // EditController is the compatibility path used when another plugin replaces PDFExport.
+        $this->loadExtension(new EditController());
+
+        // Native PDFExport supports extensions through PDFDocument::ExtensionsTrait.
+        // Some plugins, such as PlantillasPDF, replace the dynamic PDFExport class with
+        // an implementation that does not expose addExtension(). In that case, trying
+        // to register our PDFExport extension breaks the plugin rebuild process.
+        $pdfExportClass = '\\FacturaScripts\\Dinamic\\Lib\\Export\\PDFExport';
+        if (class_exists($pdfExportClass) && method_exists($pdfExportClass, 'addExtension')) {
+            $this->loadExtension(new PDFExport());
+        }
     }
 
     public function update(): void
     {
-        // Initialize settings with empty values to create the settings group
+        // Initialize settings with empty values to create the settings group.
         $settings = [
             'pattern_FacturaCliente',
             'pattern_FacturaProveedor',
@@ -44,11 +53,11 @@ class Init extends InitClass
         ];
 
         foreach ($settings as $key) {
-            // This creates the setting if it doesn't exist (in memory)
+            // This creates the setting if it doesn't exist in memory.
             Tools::settings('pdffilenamer', $key, '');
         }
 
-        // Save settings to database to create the settings group
+        // Save settings to database to create the settings group.
         Tools::settingsSave();
     }
 
