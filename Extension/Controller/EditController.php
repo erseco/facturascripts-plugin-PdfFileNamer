@@ -34,7 +34,10 @@ class EditController
     protected function execAfterAction(): Closure
     {
         return function ($action) {
-            if ('export' !== $action || 'PDF' !== $this->request->queryOrInput('option', '')) {
+            if (
+                'export' !== $action
+                || 'PDF' !== $this->request->query('option', $this->request->input('option', ''))
+            ) {
                 return null;
             }
 
