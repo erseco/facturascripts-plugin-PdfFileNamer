@@ -78,7 +78,7 @@ class FilenameBuilder
         // Extract company data
         if (!empty($model->idempresa)) {
             $empresa = new Empresa();
-            if ($empresa->loadFromCode($model->idempresa)) {
+            if ($empresa->load($model->idempresa)) {
                 $tokens['company'] = (string)($empresa->nombrecorto ?? $empresa->nombre ?? '');
                 $tokens['company_name'] = (string)($empresa->nombre ?? '');
                 $tokens['company_cif'] = (string)($empresa->cifnif ?? '');

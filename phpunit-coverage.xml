@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="Test/bootstrap.php" colors="true" failOnWarning="true">
+    <testsuites>
+        <testsuite name="PdfFileNamer"><directory>Test/Plugins</directory></testsuite>
+    </testsuites>
+    <coverage includeUncoveredFiles="true" processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">Plugins/PdfFileNamer/Extension</directory>
+            <directory suffix=".php">Plugins/PdfFileNamer/Lib</directory>
+            <file>Plugins/PdfFileNamer/Init.php</file>
+        </include>
+    </coverage>
+</phpunit>
