@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/erseco/facturascripts-plugin-PdfFileNamer/branch/main/graph/badge.svg)](https://codecov.io/gh/erseco/facturascripts-plugin-PdfFileNamer)
 
-Plugin para FacturaScripts 2025.x que permite personalizar los nombres de los archivos PDF generados para cada tipo de documento comercial.
+Plugin para FacturaScripts 2025.43 o superior que permite personalizar los nombres de los archivos PDF generados para cada tipo de documento comercial.
 
 <a href="https://erseco.github.io/facturascripts-playground/?blueprint=https%3A%2F%2Fraw.githubusercontent.com%2Ferseco%2Ffacturascripts-plugin-PdfFileNamer%2Frefs%2Fheads%2Fmain%2Fblueprint.json">
   <img src="https://raw.githubusercontent.com/erseco/facturascripts-playground/main/ogimage.png" alt="Try PdfFileNamer in your browser" width="220">
@@ -24,7 +24,7 @@ Plugin para FacturaScripts 2025.x que permite personalizar los nombres de los ar
 
 ## Requisitos
 
-- FacturaScripts 2025.x o superior
+- FacturaScripts 2025.43 o superior (usa los pipes `qrSubtitleHeader` y `qrSubtitleAfterLines` de `PDFDocument`)
 - PHP 8.2 o superior
 
 ## Instalacion
